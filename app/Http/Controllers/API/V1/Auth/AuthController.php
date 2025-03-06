@@ -23,7 +23,7 @@ class AuthController extends APIController
             $user = $this->authRepository->register($request->all());
            
             return $this->success([
-                'user' => $user['name'],
+                'user' => $user
             ], 'User registered successfully');
         } catch (\Exception $e) {
             return $this->error($e->getMessage());

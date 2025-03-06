@@ -23,11 +23,11 @@
     "colId": "932dcf94-f69f-403d-a1d4-fd7587bcb876",
     "containerId": "2e43f003-de03-4614-854b-c35897af512c",
     "name": "register",
-    "url": "{{baseUrl}}/register",
+    "url": "{{baseUrl}}/auth/register",
     "method": "POST",
     "sortNum": 20000,
     "created": "2025-03-03T06:07:43.934Z",
-    "modified": "2025-03-03T14:01:28.681Z",
+    "modified": "2025-03-06T07:00:37.877Z",
     "headers": [
       {
         "name": "Accept",
@@ -51,7 +51,7 @@
     "method": "POST",
     "sortNum": 30000,
     "created": "2025-03-03T14:03:32.384Z",
-    "modified": "2025-03-06T06:45:43.374Z",
+    "modified": "2025-03-06T07:13:22.345Z",
     "headers": [
       {
         "name": "Accept",
@@ -61,7 +61,7 @@
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"email\": \"raridoy101@gmail.com\",\n  \"password\": \"password\"\n}",
+      "raw": "{\n  \"email\": \"test8@gmail.com\",\n  \"password\": \"12345678\"\n}",
       "form": []
     },
     "tests": []
@@ -107,6 +107,131 @@
       }
     ],
     "params": [],
+    "tests": []
+  },
+  {
+    "_id": "4b23a705-bd50-4a97-9d30-1b9fd74a914e",
+    "colId": "932dcf94-f69f-403d-a1d4-fd7587bcb876",
+    "containerId": "0f0a06f4-efe4-4c98-96fb-110c22576448",
+    "name": "get-all",
+    "url": "{{baseUrl}}/hotels",
+    "method": "GET",
+    "sortNum": 60000,
+    "created": "2025-03-06T07:11:51.928Z",
+    "modified": "2025-03-06T07:14:22.076Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{token}}"
+    },
+    "tests": []
+  },
+  {
+    "_id": "616209be-f449-4062-8ad9-91ea0b7c5c33",
+    "colId": "932dcf94-f69f-403d-a1d4-fd7587bcb876",
+    "containerId": "0f0a06f4-efe4-4c98-96fb-110c22576448",
+    "name": "post",
+    "url": "{{baseUrl}}/hotels",
+    "method": "POST",
+    "sortNum": 70000,
+    "created": "2025-03-06T07:14:41.377Z",
+    "modified": "2025-03-06T07:29:27.723Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"Reagency\",\n  \"address\": \"Nikunja-2\",\n  \"cost_per_night\": 2000,\n  \"available_rooms\": 5,\n  \"rating\": 5\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{token}}"
+    },
+    "tests": []
+  },
+  {
+    "_id": "b0ab1c1f-2619-40a5-9721-d5efec3a3347",
+    "colId": "932dcf94-f69f-403d-a1d4-fd7587bcb876",
+    "containerId": "0f0a06f4-efe4-4c98-96fb-110c22576448",
+    "name": "update",
+    "url": "{{baseUrl}}/hotels/1",
+    "method": "PUT",
+    "sortNum": 80000,
+    "created": "2025-03-06T07:30:05.434Z",
+    "modified": "2025-03-06T07:31:13.988Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"id\": 1,\n  \"name\": \"test\",\n  \"address\": \"Nikunja-2\",\n  \"cost_per_night\": 2000,\n  \"available_rooms\": 5,\n  \"rating\": 5\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{token}}"
+    },
+    "tests": []
+  },
+  {
+    "_id": "0f763533-d403-417b-865a-a5bd075dfaa7",
+    "colId": "932dcf94-f69f-403d-a1d4-fd7587bcb876",
+    "containerId": "0f0a06f4-efe4-4c98-96fb-110c22576448",
+    "name": "show",
+    "url": "{{baseUrl}}/hotels/1",
+    "method": "GET",
+    "sortNum": 90000,
+    "created": "2025-03-06T07:31:27.213Z",
+    "modified": "2025-03-06T07:31:52.293Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{token}}"
+    },
+    "tests": []
+  },
+  {
+    "_id": "c8fee1ce-683e-4787-a73c-305a0753428e",
+    "colId": "932dcf94-f69f-403d-a1d4-fd7587bcb876",
+    "containerId": "0f0a06f4-efe4-4c98-96fb-110c22576448",
+    "name": "destroy",
+    "url": "{{baseUrl}}/hotels/1",
+    "method": "DELETE",
+    "sortNum": 100000,
+    "created": "2025-03-06T07:32:10.670Z",
+    "modified": "2025-03-06T07:32:29.103Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{token}}"
+    },
     "tests": []
   }
 ]

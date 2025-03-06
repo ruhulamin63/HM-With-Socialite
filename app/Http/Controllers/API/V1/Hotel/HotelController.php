@@ -18,9 +18,14 @@ class HotelController extends Controller
     public function index(Request $request)
     {
         try{
-                $perPage = 8;
-            $hotels = Hotel::paginate($perPage);
-
+            $hotels = Hotel::latest();
+            
+            if ($request->has('rows')) {
+                $hotels = $hotels->paginate($request->rows);
+            } else {
+                $hotels = $hotels->get();
+            }
+            
             return CommonResource::collection($hotels);
         }        
         catch(\Exception $e){

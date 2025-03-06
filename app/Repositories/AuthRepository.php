@@ -60,7 +60,7 @@ class AuthRepository implements IAuthRepo
             return $this->success(UserResource::make($user), 'User registered successfully');
             
         } catch (\Throwable $th) {
-            throw new \Exception('User registration failed');
+            return $this->error($th->getMessage(), 500);
         }
     }
 

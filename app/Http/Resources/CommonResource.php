@@ -14,9 +14,6 @@ class CommonResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return [
-                'email' => $this->email,
-                'photo_url' => $this->photo_url,
-            ];
+        return parent::toArray($request);
     }
 }

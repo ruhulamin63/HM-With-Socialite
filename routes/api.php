@@ -9,4 +9,5 @@ Route::prefix('v1')->group(function () {
     });
 
     include_once 'api/v1/auth.php';
+    include_once 'api/v1/hotel.php';
 });

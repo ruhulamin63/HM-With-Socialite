@@ -8,8 +8,4 @@ Route::controller(AuthController::class)->group(function(){
     Route::get('auth/google/callback', 'callback');
 });
 
-Route::get('/{any}', function () {
-    return view('app');
-})->where('any', '.*');
-
 

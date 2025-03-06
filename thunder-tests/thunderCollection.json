@@ -11,6 +11,13 @@
         "containerId": "",
         "created": "2025-03-03T06:07:33.816Z",
         "sortNum": 10000
+      },
+      {
+        "_id": "0f0a06f4-efe4-4c98-96fb-110c22576448",
+        "name": "hotels",
+        "containerId": "",
+        "created": "2025-03-06T07:09:30.018Z",
+        "sortNum": 20000
       }
     ]
   }

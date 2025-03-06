@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\V1\Auth\AuthController;
-use App\Http\Controllers\API\V1\Hotel\HotelController;
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('auth/register', 'register');
@@ -11,6 +10,5 @@ Route::controller(AuthController::class)->group(function () {
     
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('logout', 'logout');
-        Route::apiResource('hotels', HotelController::class);
     });
 });
