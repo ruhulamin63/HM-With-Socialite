@@ -1,0 +1,17 @@
+[
+  {
+    "_id": "932dcf94-f69f-403d-a1d4-fd7587bcb876",
+    "colName": "HM-API-Collection",
+    "created": "2025-03-03T05:18:28.972Z",
+    "sortNum": 10000,
+    "folders": [
+      {
+        "_id": "2e43f003-de03-4614-854b-c35897af512c",
+        "name": "auth",
+        "containerId": "",
+        "created": "2025-03-03T06:07:33.816Z",
+        "sortNum": 10000
+      }
+    ]
+  }
+]

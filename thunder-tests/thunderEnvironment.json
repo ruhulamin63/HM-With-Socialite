@@ -1,0 +1,24 @@
+[
+  {
+    "_id": "eb6942ec-99dc-4fac-848e-977f1ae679af",
+    "name": "local",
+    "default": true,
+    "sortNum": 10000,
+    "created": "2025-03-03T05:18:45.458Z",
+    "modified": "2025-03-03T05:18:45.458Z",
+    "data": [
+      {
+        "name": "baseUrl",
+        "value": "http://127.0.0.1:8000/api/v1/auth"
+      },
+      {
+        "name": "token",
+        "value": ""
+      },
+      {
+        "name": "refresh_token",
+        "value": "0gRbWlYIuNi79xf1THuK1X4HzOstOFwUnAi7nQrSWdbUXfDiUH0cWZuoOBGB"
+      }
+    ]
+  }
+]
