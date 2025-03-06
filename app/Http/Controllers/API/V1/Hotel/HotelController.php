@@ -100,6 +100,14 @@ class HotelController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try{
+            $hotel = Hotel::findOrFail($id);
+            $hotel->delete();
+
+            return $this->success(null, 'Hotel deleted successfully.');
+        }        
+        catch(\Exception $e){
+            return $this->error($e->getMessage(), 500);
+        }
     }
 }
