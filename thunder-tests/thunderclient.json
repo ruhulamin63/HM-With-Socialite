@@ -47,11 +47,11 @@
     "colId": "932dcf94-f69f-403d-a1d4-fd7587bcb876",
     "containerId": "2e43f003-de03-4614-854b-c35897af512c",
     "name": "login",
-    "url": "{{baseUrl}}/login",
+    "url": "{{baseUrl}}/auth/login",
     "method": "POST",
     "sortNum": 30000,
     "created": "2025-03-03T14:03:32.384Z",
-    "modified": "2025-03-03T14:04:14.923Z",
+    "modified": "2025-03-06T06:45:43.374Z",
     "headers": [
       {
         "name": "Accept",
@@ -61,7 +61,7 @@
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"email\": \"test@gmail.com\",\n  \"password\": \"12345678\"\n}",
+      "raw": "{\n  \"email\": \"raridoy101@gmail.com\",\n  \"password\": \"password\"\n}",
       "form": []
     },
     "tests": []
@@ -95,11 +95,11 @@
     "colId": "932dcf94-f69f-403d-a1d4-fd7587bcb876",
     "containerId": "2e43f003-de03-4614-854b-c35897af512c",
     "name": "redirect",
-    "url": "{{baseUrl}}/google/redirect",
+    "url": "http://127.0.0.1:8000/auth/google",
     "method": "GET",
     "sortNum": 50000,
     "created": "2025-03-04T16:38:56.273Z",
-    "modified": "2025-03-05T04:56:44.731Z",
+    "modified": "2025-03-06T06:47:42.454Z",
     "headers": [
       {
         "name": "Accept",

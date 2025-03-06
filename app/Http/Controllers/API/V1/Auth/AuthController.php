@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API\V1\Auth;
 use App\Http\Controllers\API\V1\APIController;
 use Illuminate\Http\Request;
 use App\Repositories\Contracts\IAuthRepo;
+use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\LoginRequest;
 
 class AuthController extends APIController
 {
@@ -35,6 +37,7 @@ class AuthController extends APIController
             $password = $request->password;
 
             $data = $this->authRepository->login($email, $password);
+
             return $this->success([
                 'user' => $data['user'],
                 'token' => $data['token']
