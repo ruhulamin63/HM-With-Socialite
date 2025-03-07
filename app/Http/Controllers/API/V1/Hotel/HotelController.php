@@ -45,9 +45,15 @@ class HotelController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+    {        
         try{
-            $hotel = Hotel::create($request->all());
+            $hotel = Hotel::create([
+                'name' => $request->name,
+                'cost_per_night' => $request->cost,
+                'available_rooms' => $request->room,
+                'rating' => $request->rating,
+                'address' => $request->address
+            ]);
 
             return $this->success($hotel, 'Hotel created successfully.', 201);
         }        
@@ -86,7 +92,13 @@ class HotelController extends Controller
     {
         try{
             $hotel = Hotel::findOrFail($id);
-            $hotel->update($request->all());
+            $hotel->update([
+                'name' => $request->name,
+                'cost_per_night' => $request->cost,
+                'available_rooms' => $request->room,
+                'rating' => $request->rating,
+                'address' => $request->address
+            ]);
 
             return $this->success($hotel, 'Hotel updated successfully.');
         }        

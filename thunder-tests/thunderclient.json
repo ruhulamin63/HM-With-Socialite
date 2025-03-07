@@ -51,7 +51,7 @@
     "method": "POST",
     "sortNum": 30000,
     "created": "2025-03-03T14:03:32.384Z",
-    "modified": "2025-03-06T07:13:22.345Z",
+    "modified": "2025-03-07T12:17:33.710Z",
     "headers": [
       {
         "name": "Accept",
@@ -61,7 +61,7 @@
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"email\": \"test8@gmail.com\",\n  \"password\": \"12345678\"\n}",
+      "raw": "{\n  \"email\": \"raridoy101@gmail.com\"\n}",
       "form": []
     },
     "tests": []
@@ -221,6 +221,29 @@
     "sortNum": 100000,
     "created": "2025-03-06T07:32:10.670Z",
     "modified": "2025-03-06T07:32:29.103Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{token}}"
+    },
+    "tests": []
+  },
+  {
+    "_id": "b3d2cd30-19b3-49d8-81bd-4b7a823b8819",
+    "colId": "932dcf94-f69f-403d-a1d4-fd7587bcb876",
+    "containerId": "2e43f003-de03-4614-854b-c35897af512c",
+    "name": "logout",
+    "url": "{{baseUrl}}/auth/logout",
+    "method": "POST",
+    "sortNum": 110000,
+    "created": "2025-03-07T12:16:26.161Z",
+    "modified": "2025-03-07T12:17:06.840Z",
     "headers": [
       {
         "name": "Accept",

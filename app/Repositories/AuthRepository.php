@@ -5,10 +5,11 @@ namespace App\Repositories;
 use App\Models\User;
 use App\Repositories\Contracts\IAuthRepo;
 use App\Traits\ApiResponser;
-use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
-use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Exception;
 
 class AuthRepository implements IAuthRepo
 {
@@ -20,7 +21,7 @@ class AuthRepository implements IAuthRepo
         $this->model = $model;
     }
 
-    public function login(string $email, string $password)
+    public function login(string $email)
     {
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $user = $this->model->where('email', $email)->first();
@@ -28,10 +29,6 @@ class AuthRepository implements IAuthRepo
 
         if (!$user) {
             throw new \Exception('Invalid login credentials');
-        }
-
-        if (!Hash::check($password, $user->password)) {
-            throw new \Exception('Invalid password');
         }
 
         // if ($user->is_verified != 1) {
@@ -47,23 +44,6 @@ class AuthRepository implements IAuthRepo
         ];
     }
 
-    public function register(array $data)
-    {
-        try {
-            $user = $this->model->create([
-                'name' => $data['name'],
-                'email' => $data['email'],
-                'password' => Hash::make($data['password']),
-                'is_verified' => 1
-            ]);
-
-            return $this->success(UserResource::make($user), 'User registered successfully');
-            
-        } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), 500);
-        }
-    }
-
     public function redirectToGoogle()  
     {
         return Socialite::driver('google')->stateless()->redirect();
@@ -77,46 +57,53 @@ class AuthRepository implements IAuthRepo
             $user = User::updateOrCreate(['email' => $googleUser->email],[
                 'name' => $googleUser->name,
                 'google_id'=> $googleUser->id,
-                // 'password' => Hash::make('password'),
-                'access_token' => $googleUser->token,
-                'refresh_token' => Str::random(60),
-                'expires_in' => now()->addMinutes(1)->toDateTimeString()
+                'avatar' => $googleUser->avatar,
+                'email_verified_at' => now(),
+                'refresh_token' => Str::random(60)
             ]);
 
+            Auth::login($user);
+
+            $token = $user->createToken('authToken')->plainTextToken;
+
             return [
-                'access_token' => $googleUser->token,
-                'refresh_token' => $refreshToken
+                'token' => $token,
+                'refresh_token' => $user->refresh_token
             ];
 
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Failed to authenticate with Google'], 500);
+            throw new Exception('Failed to authenticate with Google');
         }
     }
 
     public function checkRefreshToken($refreshToken)
     {
-        $user = User::where('refresh_token', $refreshToken)->first();
+        $request->validate([
+            'refresh_token' => 'required|string',
+        ]);
+
+        $user = User::where('refresh_token', $request->refresh_token)->first();
 
         if (!$user) {
-            throw new \Exception('Invalid refresh token');
+            throw new Exception('Invalid refresh token');
         }
 
-        $newAccessToken = $user->createToken('access-token', ['*'], now()->addMinutes(15))->plainTextToken;
-        $newRefreshToken = Str::random(60);
+        $accessToken = $user->createToken('authToken')->plainTextToken;
 
-        $user->update(['refresh_token' => $newRefreshToken]);
+        $newRefreshToken = Str::random(60);
+        $user->refresh_token = $newRefreshToken;
+        $user->save();
 
         return [
-            'access_token' => $newAccessToken,
-            'refresh_token' => $newRefreshToken
+            'token' => $accessToken,
+            'refresh_token' => $newRefreshToken,
         ];
     }
 
     public function logout(User $user)
     {
         $user->tokens()->delete();
-        $user->update(['refresh_token' => null]);
 
-        return $this->success([], 'User logged out successfully');
+        return true;
     }
 }

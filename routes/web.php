@@ -5,7 +5,7 @@ use App\Http\Controllers\API\V1\Auth\AuthController;
 
 Route::controller(AuthController::class)->group(function(){
     Route::get('auth/google', 'redirect')->name('auth.google');
-    Route::get('auth/google/callback', 'callback');
+    Route::get('auth/google/callback', 'callback')->name('auth.google.callback');
 });
 
 

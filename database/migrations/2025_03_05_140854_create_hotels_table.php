@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('hotels', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('address')->nullable();
             $table->decimal('cost_per_night', 8, 2);
             $table->integer('available_rooms')->default(0);
             $table->string('image')->nullable();
-            $table->decimal('rating', 3, 2)->default(0);
+            $table->decimal('rating', 8, 2)->default(0);
+            $table->text('address')->nullable();
             $table->timestamps();
         });
     }
