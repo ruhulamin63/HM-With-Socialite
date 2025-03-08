@@ -19,6 +19,10 @@ class HotelController extends Controller
     {
         try{
             $hotels = Hotel::latest();
+
+            if($request->search){
+                $hotels = $hotels->where('name', 'like', '%'.$request->search.'%');
+            }
             
             if ($request->has('rows')) {
                 $hotels = $hotels->paginate($request->rows);
@@ -117,6 +121,21 @@ class HotelController extends Controller
             $hotel->delete();
 
             return $this->success(null, 'Hotel deleted successfully.');
+        }        
+        catch(\Exception $e){
+            return $this->error($e->getMessage(), 500);
+        }
+    }
+
+    /**
+     * Get all hotels
+     */
+    public function allHotels()
+    {
+        try{
+            $hotels = Hotel::all();
+
+            return $this->success($hotels, 'Hotels retrieved successfully.');
         }        
         catch(\Exception $e){
             return $this->error($e->getMessage(), 500);
